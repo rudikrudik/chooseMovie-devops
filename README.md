@@ -1,5 +1,5 @@
 
-# Подготовка сервера, сборка и выкладка сервиса "Социальная сеть"
+# Подготовка сервера, сборка и выкладка сайта "Выбор фильма"
 
 
 ## Содержание
@@ -19,34 +19,30 @@
 - openssl
 
 ## <a id="technologies">Технологии</a>
-- docker, docker build, postgreSQL, ansible
+- docker, docker build, ansible, nodejs, js, nginx
 
 ## <a id="start">Начало работы</a>
 
 - Скачать репозиторий проекта
 ```
-git clone https://github.com/rudikrudik/socialNetwork-devops.git
+git clone https://github.com/rudikrudik/chooseMovie-devops.git
 ```
 - Перейти в каталог проекта
 ```
-cd socialNetwork-devops
+cd chooseMovie-devops
 ```
-- Изменить файл <b>group_vars/all/vault.yml</b> поставив значения соединения с БД и сгенерировать ключ <b>openssl rand -hex 32</b>
 - В файле inventory указать ip адрес сервера
-  - Сборка докер образа и запуск происходит на одной машине 
+  - Сборка докер образа и запуск происходит на одном хосте
 
 ## <a id="tag_methods">Теги запуска playbook</a>
 ```
 main.yml # подготавливает систему, собирает и разворачивает сервис
-main.yml --tags="build" # сборка обазов 
-main.yml --tags="deploy" # выкладка сервисов app и postgresql
-main.yml --tags="name" # сборка и выкладка одного сервиса, вместо name подставить нужный 
+main.yml --tags="build" # сборка образа 
+main.yml --tags="deploy" # выкладка сервиса
 ```
 
 ## <a id="todo">To do</a>
-- ~~health check для контейнеров~~
-- ~~SQL скрипт создания базы, таблиц~~
-- ~~SQL скрипт тестовых данных~~
+- ~~health check для контейнера~~
 - мониторинг
 
 ## <a id="command">Команда проекта</a>
