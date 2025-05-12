@@ -1,0 +1,21 @@
+---
+# Service for deploy
+deploy_services:
+  - name: movie_app_frontend
+    version: latest
+
+build_services:
+  - name: movie_app_frontend
+    version: latest
+
+
+# Var to repository user home catalog
+git_pach: /home/rudik/repository
+
+git_repository_name: https://github.com/rudikrudik/chooseMovie.git
+
+# User name
+user_name: rudik
+
+# api key
+app_env:  "{{ app.key }}"

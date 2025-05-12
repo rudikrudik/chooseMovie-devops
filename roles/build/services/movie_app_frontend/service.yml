@@ -1,0 +1,33 @@
+---
+- name: Built service -> [{{ inventory_hostname }}]
+  ansible.builtin.debug:
+    msg: Print data from build "{{ inventory_hostname }}"
+
+- name: Get repository
+  ansible.builtin.git:
+    repo: "{{ git_repository_name }}"
+    dest: "{{ git_pach }}"
+
+- name: Create .env.local to ["{{ item.name }}"]
+  ansible.builtin.file:
+    path: "{{ git_pach }}/.env.local"
+    state: touch
+
+- name: Add api-key to app
+  ansible.builtin.shell: /usr/bin/echo "REACT_APP_API_KEY={{ app_env }}" > {{ git_pach }}/.env.local
+
+- name: Build docker image ["{{ item.name }}"]
+  community.docker.docker_image:
+    build:
+      path: "{{ git_pach }}"
+    name: "{{ item.name }}"
+    tag: "{{ item.version }}"
+    state: present
+    source: build
+    
+
+- name: Remove repository
+  ansible.builtin.file:
+    path: "{{ git_pach }}"
+    state: absent
+  

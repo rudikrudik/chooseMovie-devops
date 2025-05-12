@@ -1,0 +1,8 @@
+---
+- name: Preconfig all servers 
+  hosts: all
+  roles:
+    - role: build
+      tags: build
+    - role: deploy
+      tags: deploy
